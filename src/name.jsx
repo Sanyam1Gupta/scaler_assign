@@ -1,7 +1,7 @@
-function Name() {
+function Name(props) {
     return (
       <div className="App">
-          dsds
+          {props.name}
       </div>
     );
   }

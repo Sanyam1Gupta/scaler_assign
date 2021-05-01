@@ -10,10 +10,12 @@ import {
 class Search extends React.Component {
     constructor(props) {
         super(props);
+        this.setName= this.setName.bind(this);
         this.state = {
             names: [],
             searchTerm: '',
             searchedNames: [],
+            selectedName: '',
         };
       } 
 
@@ -46,8 +48,13 @@ class Search extends React.Component {
         })
     }
 
+    setName =(e) => {
+        console.log(e);
+        this.setState({selectedName: e});
+    }
+
     render(){
-        const {names, searchTerm, searchedNames}=this.state;
+        const {names, searchTerm, searchedNames, selectedName}=this.state;
        
         return(
             <Router>
@@ -59,7 +66,7 @@ class Search extends React.Component {
                return (
                    <>
                <li>
-               <Link to="/name">{name}</Link>
+               <Link to="/name" target="_blank" rel="noopener noreferrer" onClick={this.setName}>{name}</Link>
                </li>
                   
                </>
@@ -74,7 +81,7 @@ class Search extends React.Component {
             
                 <Switch>
                     <Route path="/name">
-                    <Name />
+                    <Name name={selectedName} />
                     </Route>
                     </Switch>
            
